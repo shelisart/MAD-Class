@@ -1,118 +1,57 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
   Text,
-  useColorScheme,
   View,
+  Image,
+  ScrollView,
+  TextInput,
+  StyleSheet,
+  Button,
+  Alert,
 } from 'react-native';
+import React from 'react';
+import Shell from './assets/Shel.jpg';
+import Title from './src/components/Title';
+import InputName from './src/components/InputName';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const App = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    <View>
+      <Title text="This is MAD Class"/>
+      <ScrollView>
+      <InputName placeholder="Masukkan nama lengkap anda"/>
+        <View style={{flexDirection:'column', marginTop:50}}>
+          <Text style={{fontSize:20, fontWeight: 'bold', color: '#8fc9ae', marginBottom:20}}>Main Colors</Text>
+          <View style={{width:1000, height:100, backgroundColor:'#8fc9ae'}} />
+          <View style={{width:1000, height:100, backgroundColor:'#548e87'}} />
+          <View style={{width:1000, height:100, backgroundColor:'#385b66'}} />
+        </View>
+        <TextInput
+          placeholder="Masukkan kode warna favorite anda"
+          style={style.inputColor}
+        />
+        <Button
+          title="Submit"
+          color={'#385b66'}
+          onPress={() => Alert.alert('Warna Tersimpan!')}
+        />
+        <Text style={{fontSize:20, fontWeight: 'bold', color: '#8fc9ae', marginTop:30}}>Test Image</Text>
+        <View style={{flexDirection:'row', marginTop:20}}>
+          <Image source={Shell} style={{marginLeft:7, marginTop:5, width:200, height: 200}} />
+          <Image source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}} style={{marginTop:5, width:200, height: 200, marginBottom:150}} />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+const style = StyleSheet.create({
+  inputColor: {
+    borderColor: '#bddaa5',
+    borderWidth: 2,
+    marginTop: 40,
+    marginBottom: 15,
+    borderRadius: 15,
+    padding: 15,
   },
 });
-
 export default App;
